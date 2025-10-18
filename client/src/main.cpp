@@ -6,12 +6,11 @@
 
 int main(int argc, char* argv[])
 {
-    std::string IP = "127.0.0.1";
-    Client player(IP);
 
     std::string host = (argc > 1) ? argv[1] : "localhost";
     in_port_t port = (argc > 2) ? atoi(argv[2]) : sockpp::TEST_PORT;
 
+    Client player(host);
     sockpp::initialize();
     sockpp::tcp_connector conn;
 
