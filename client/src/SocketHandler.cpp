@@ -3,7 +3,7 @@
 std::string SocketHandler::IP;
 in_port_t SocketHandler::port;
 
-bool SocketHandler::Startup(std::string _IP)
+int SocketHandler::Startup(std::string _IP)
 {
     IP = _IP;
     port = 65312;

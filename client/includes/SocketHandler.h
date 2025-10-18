@@ -15,7 +15,9 @@ class SocketHandler
         static std::string IP;
         static in_port_t port;
     public:
-        static bool Startup(std::string _IP);
+        static int Startup(std::string _IP);
+
+        static void SendString(std::string varName);
 
 };
 

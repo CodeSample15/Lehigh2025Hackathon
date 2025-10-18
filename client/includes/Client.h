@@ -29,6 +29,7 @@ public:
     bool Disconnect();
 
     void Poll();
+    void HeartBeat();
 
     /* Queries */
     template <typename T>

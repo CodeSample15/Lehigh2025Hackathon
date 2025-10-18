@@ -18,7 +18,8 @@ bool Client::Connect(std::string IP)
     //  Retrieve PID from server
     //  Port 65312
     
-    if(!SocketHandler::Startup(IP))
+    PID = SocketHandler::Startup(IP);
+    if(PID == -1)
         return false;
 
     return true;
