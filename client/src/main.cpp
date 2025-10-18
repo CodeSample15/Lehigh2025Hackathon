@@ -2,13 +2,12 @@
 #include "Client.h"
 
 #include "sockpp/tcp_connector.h"
-#include "sockpp/version.h"
 
 int main(int argc, char* argv[])
 {
 
-    std::string host = (argc > 1) ? argv[1] : "localhost";
-    in_port_t port = (argc > 2) ? atoi(argv[2]) : sockpp::TEST_PORT;
+    std::string host = "127.0.0.1";
+    in_port_t port = 65312;
 
     Client player(host);
     sockpp::initialize();
