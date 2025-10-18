@@ -23,3 +23,19 @@ bool Client::Connect(std::string IP)
 
     return true;
 }
+
+template <typename T>
+T GetVar(std::string varName)
+{
+
+}
+template <typename T>
+T SetVar(std::string varName)
+{
+
+}
+
+void Update()
+{
+    
+}

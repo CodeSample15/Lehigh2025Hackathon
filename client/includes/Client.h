@@ -8,6 +8,11 @@
 
 #include "SocketHandler.h"
 
+struct ClientAttributes
+{
+    
+};
+
 class Client
 {
 private:
