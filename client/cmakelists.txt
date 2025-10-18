@@ -7,16 +7,13 @@ find_package(sockpp REQUIRED)
 file( GLOB SOURCES "src/*.cpp")
 add_executable( Hackathon ${SOURCES} )
 
+include_directories(
+        ${PROJECT_SOURCE_DIR}/includes
+        ${PROJECT_SOURCE_DIR}../lib/sockpp/include
+)
+
 target_link_libraries(
     Hackathon
     PRIVATE
         Sockpp::sockpp
 )
-
-target_include_directories(
-    Hackathon
-    PRIVATE
-        ${PROJECT_SOURCE_DIR}/includes
-        ${PROJECT_SOURCE_DIR}/includes/sockpp
-)
-
