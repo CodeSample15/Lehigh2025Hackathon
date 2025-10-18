@@ -1,0 +1,3 @@
+C:/Users/lukec/Documents/GitHub/Lehigh2025Hackathon/client/build/CMakeFiles/Hackathon.dir
+C:/Users/lukec/Documents/GitHub/Lehigh2025Hackathon/client/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/lukec/Documents/GitHub/Lehigh2025Hackathon/client/build/CMakeFiles/ZERO_CHECK.dir

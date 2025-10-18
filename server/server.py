@@ -8,6 +8,9 @@ class Server:
     def add_var(self, varJson):
         pass
 
+    def get_var(self, name):
+        pass
+
     def flush_changes(self):
         self.changes = {}
 
