@@ -6,12 +6,19 @@
 #include <string>
 #include <vector>
 
+#ifdef _WIN64
+#include <winsock2.h>
+#else
+#include <sys/socket.h>
+#endif
+
 class Client
 {
 private:
-    unsigned long PID = -1; 
-
     const static std::string ip;
+    int clientSocket;
+
+    unsigned long PID = -1; 
     std::vector<std::function<void()>> playerActions;
 public:
     Client(std::string IP);
