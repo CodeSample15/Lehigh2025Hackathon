@@ -1,3 +1,7 @@
+'''
+    Error codes
+'''
+
 class Server:
     def __init__(self):
         self.public_vars = {}
@@ -9,7 +13,7 @@ class Server:
         pass
 
     def get_var(self, name):
-        pass
+        return self.public_vars[name]
 
     def flush_changes(self):
         self.changes = {}
