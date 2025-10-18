@@ -2,16 +2,20 @@ cmake_minimum_required(VERSION 3.18)
 
 PROJECT (Hackathon)
 set (CMAKE_CXX_STANDARD 17)
-
 find_package(sockpp REQUIRED)
 
-file( GLOB SOURCES "src/*.cpp" )
+file( GLOB SOURCES "src/*.cpp" "src/sockpp/*.cpp" "src/sockpp/*.cpp")
 add_executable( Hackathon ${SOURCES} )
-
 target_link_libraries(Hackathon Sockpp::sockpp)
+
 target_include_directories(
     Hackathon
     PRIVATE
         ${PROJECT_SOURCE_DIR}/includes
-        Sockpp::sockpp
+)
+
+target_link_libraries(
+    Hackathon
+    PRIVATE
+        
 )
