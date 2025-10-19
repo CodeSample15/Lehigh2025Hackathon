@@ -32,6 +32,7 @@ def connection_thread(conn, addr):
 
                 msg = data.decode()
                 resp = b'.'
+                print(f'[-] Msg from {conn_uuid}: {msg}')
                 if len(msg) >= 2 and msg[0:2]=='i_':
                     #init prefix, send server info
                     resp = json.dumps(serverState.public_vars, indent=2).encode('utf-8')
