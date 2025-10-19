@@ -20,11 +20,16 @@ def connection_thread(conn, addr):
         conn.sendall(bytes(str(uuid.uuid4()), 'utf-8'))
 
         while running:
-            data = conn.recv(1024)
-            if not data:
-                break
+            try:
+                data = conn.recv(1024)
+                if not data:
+                    break
 
-            conn.sendall(data)  
+                conn.sendall(data)
+            except:
+                print(f"[!] Error with connection to {addr}. Closing connection.")
+                conn.close()
+                break
 
 def listen_thread():
     global threads
