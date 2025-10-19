@@ -7,7 +7,6 @@ import time
 from server import ServerState
 
 HOST = '127.0.0.1'
-HOST = '192.168.0.19'
 PORT = 65312
 
 serverState = ServerState()
@@ -29,8 +28,14 @@ def connection_thread(conn, addr):
                 data = conn.recv(1024)
                 if not data:
                     break
-                print(data.decode())
-                conn.sendall(b'hello, world')
+
+                msg = data.decode()
+                resp = b'.'
+                if len(msg) > 2 and msg[0:2]=='i_':
+                    #init request, send server info
+                    resp = json.dumps(serverState.public_vars, indent=2).encode('utf-8')
+
+                conn.sendall(resp)
             except:
                 print(f"[!] Error with connection to {addr}. Closing connection.")
                 conn.close()
