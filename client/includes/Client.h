@@ -6,11 +6,12 @@
 #include <string>
 #include <vector>
 
-#ifdef _WIN64
-#include <winsock2.h>
-#else
-#include <sys/socket.h>
-#endif
+#include "SocketHandler.h"
+
+struct ClientAttributes
+{
+    
+};
 
 class Client
 {
@@ -18,7 +19,7 @@ private:
     const static std::string ip;
     int clientSocket;
 
-    unsigned long PID = -1; 
+    std::string UUID = ""; 
     std::vector<std::function<void()>> playerActions;
 public:
     Client(std::string IP);
@@ -28,6 +29,7 @@ public:
     bool Disconnect();
 
     void Poll();
+    void HeartBeat();
 
     /* Queries */
     template <typename T>
