@@ -19,7 +19,7 @@ bool Client::Connect(std::string IP)
     //  Port 65312
     
     SocketHandler::Startup(IP);
-    UUID = SocketHandler::Read("test");
+    UUID = SocketHandler::Read();
     std::cout << "UUID: " << UUID << " \n";
     return true;
 }
@@ -37,5 +37,7 @@ T Client::SetVar(std::string varName)
 
 void Client::Update()
 {
-    SocketHandler::Send("test");
+    std::string readValue;
+    std::cin >> readValue;
+    SocketHandler::Send(readValue);
 }

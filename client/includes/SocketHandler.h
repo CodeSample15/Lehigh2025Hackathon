@@ -19,7 +19,7 @@ class SocketHandler
     public:
         static int Startup(std::string _IP);
 
-        static std::string Read(std::string varName);
+        static std::string Read();
         static void Send(std::string varName);
 };
 
