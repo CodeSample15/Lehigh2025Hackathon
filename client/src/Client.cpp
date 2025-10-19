@@ -46,7 +46,10 @@ T Client::SetVar(std::string varName)
 void Client::Init() 
 {
     SocketHandler::Send("_i");
-    
+    std::string serverConfig = SocketHandler::Read();
+
+    std::cout << serverConfig << std::endl;
+    auto pair = ParsePacket(serverConfig);
 }
 
 void Client::Sync()
