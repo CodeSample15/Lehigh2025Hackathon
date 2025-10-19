@@ -14,10 +14,14 @@ class SocketHandler
     private:
         static std::string IP;
         static in_port_t port;
+
+        static sockpp::tcp_connector conn;
     public:
         static int Startup(std::string _IP);
 
         static void SendString(std::string varName);
+
+        static void Poll(std::string varName);
 
 };
 
