@@ -25,13 +25,20 @@ int SocketHandler::Startup(std::string _IP)
     return true;
 }
 
-void SocketHandler::Poll(std::string varName)
+std::string SocketHandler::Read()
 {
-    char buf[37];
-    auto res = conn.read(buf, sizeof(buf));
+    std::vector<char> buf(1024);
+    auto res = conn.read(&buf[0], buf.size());
 
-    for(char c : buf)
-        std::cout << c;
-    
-    conn.write_n("Luke Gay", 8);
+    std::string ret(buf.begin(), buf.end());
+    return ret;
+}
+
+void SocketHandler::Send(std::string varName)
+{
+    std::string s = "S_" + varName;
+    conn.write_n(s.c_str(), s.length());
+
+    std::cout << Read() << "\n";
+    return;
 }

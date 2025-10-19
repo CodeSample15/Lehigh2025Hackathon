@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 
 #include "SocketHandler.h"
 
@@ -21,6 +22,8 @@ private:
 
     std::string UUID = ""; 
     std::vector<std::function<void()>> playerActions;
+
+    std::map<std::string, std::string> variables;
 public:
     Client(std::string IP);
 
@@ -40,6 +43,9 @@ public:
     /* Other */
     void RegisterClient();
     void Update();  //  Per frame actions
+
+    void init(); // pull all server config from interwebs
+    void sync(); // sync changes to/from server
 
     template<typename ret, typename... args>
     void AddAction(std::function<ret(args...)> script);

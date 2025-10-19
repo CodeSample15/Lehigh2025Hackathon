@@ -19,10 +19,8 @@ class SocketHandler
     public:
         static int Startup(std::string _IP);
 
-        static void SendString(std::string varName);
-
-        static void Poll(std::string varName);
-
+        static std::string Read();
+        static void Send(std::string varName);
 };
 
 #endif

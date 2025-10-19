@@ -1,7 +1,0 @@
-git clone 'https://github.com/fpagliughi/sockpp.git'
-cd sockpp
-git checkout e6c4688
-cmake -Bbuild .
-cmake --build build/
-cmake --build build/ --target install
-cd ..
