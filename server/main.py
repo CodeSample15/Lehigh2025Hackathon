@@ -27,7 +27,7 @@ def connection_thread(conn, addr):
                 data = conn.recv(1024)
                 if not data:
                     break
-
+                
                 conn.sendall(data)
             except:
                 print(f"[!] Error with connection to {addr}. Closing connection.")
@@ -60,8 +60,9 @@ def main():
             config = json.load(f)
 
             for value in config['public'].keys():
-                print(type(config['public'][value]))
-                serverState.add_var(value, config[value])
+                #print(type(config['public'][value]))
+                #serverState.add_var(value, config[value])
+                pass
             
         except Exception as e:
             print("Error parsing json:")

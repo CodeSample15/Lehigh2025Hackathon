@@ -1,0 +1,15 @@
+# BUILD STEPS 
+
+Make sure you have cmake installed
+Make sure you have git cli installed
+
+1. git clone https://github.com/CodeSample15/Lehigh2025Hackathon.git
+2. cd Lehigh2025Hackathon
+3. git submodule update --init --recursive  
+4. cd client 
+5. cmake -S . -B builds
+6. cmake --build builds
+7. ./builds/Debug/Hackathon
+
+
+MAKE SURE TO INCLUDE DLL IN EXEC PATH
