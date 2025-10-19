@@ -31,22 +31,15 @@ std::string SocketHandler::Read()
     auto res = conn.read(&buf[0], buf.size());
 
     std::string ret(buf.begin(), buf.end());
+    size_t trunc = ret.find('\0');
+    ret = ret.substr(0, trunc);
+
     return ret;
 }
 
 void SocketHandler::Send(std::string varName)
 {
-    std::string s = "S_" + varName;
-    conn.write_n(s.c_str(), s.length());
+    conn.write_n(varName.c_str(), varName.length());
 
     return;
-}
-
-void SocketHandler::Sync(std::string send, std::string& receive)
-{
-    while((receive = Read()) != "")
-    {
-
-    }
-    Send(send);
 }

@@ -45,20 +45,23 @@ T Client::SetVar(std::string varName)
 
 void Client::Init() 
 {
-    SocketHandler::Send("_i");
-    
+    SocketHandler::Send("i_");
+    std::string serverConfig = SocketHandler::Read();
+
+    //std::cout << serverConfig << std::endl;
+    auto pair = ParsePacket(serverConfig);
 }
 
 void Client::Sync()
 {
-    std::string receive = "";
-    receive = SocketHandler::Read();        //  Either read EVERY update, or loop until no more sent  //
+    // std::string receive = "";
+    // receive = SocketHandler::Read();
 
-    auto pair = ParsePacket(receive);
-    AddDictElement(pair.first, pair.second);    
+    // auto pair = ParsePacket(receive);
+    // AddDictElement(pair.first, pair.second);
 
-    //std::string send = "Data to Send";
-    //SocketHandler::Send(send);
+    // std::string send = "Temp var send";
+    // SocketHandler::Send(send);
 }
 
 void Client::AddDictElement(std::string key, std::string value)
