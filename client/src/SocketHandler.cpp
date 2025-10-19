@@ -27,12 +27,14 @@ int SocketHandler::Startup(std::string _IP)
     {
         const size_t N = s.length();
 
+        /*
         // TODO: Do we need to check length (res.value()) for write or read?
         if (auto res = conn.write(s); res != N)
         {
             std::cerr << "Error writing to the TCP stream: " << res.error_message() << std::endl;
             break;
         }
+            */
 
         sret.resize(N);
         if (auto res = conn.read_n(&sret[0], N); res != N)
