@@ -12,10 +12,10 @@ std::pair<std::string, std::string> Client::ParsePacket(std::string dictionaryPa
 
 /* Public */
 
-Client::Client(std::string IP)
+Client::Client(std::string IP, in_port_t port)
 {
     
-    if (!Connect(IP))
+    if (!Connect(IP, port))
     {
         std::cerr << "Connection failed to initalize " << IP << "\n";
         return;
@@ -23,9 +23,9 @@ Client::Client(std::string IP)
     
 }
 
-bool Client::Connect(std::string IP)
+bool Client::Connect(std::string IP, in_port_t port)
 {
-    SocketHandler::Startup(IP);
+    SocketHandler::Startup(IP, port);
     UUID = SocketHandler::Read();
 
     std::cout << "UUID: " << UUID << " \n";
@@ -43,11 +43,12 @@ T Client::SetVar(std::string varName)
 
 }
 
-void Client::Update()
+void Client::Init() 
 {
-    std::string readValue = " ";
-    SocketHandler::Send(readValue);
+    SocketHandler::Send("_i");
+    
 }
+
 void Client::Sync()
 {
     std::string receive = "";

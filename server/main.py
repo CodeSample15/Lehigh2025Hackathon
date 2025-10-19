@@ -32,8 +32,11 @@ def connection_thread(conn, addr):
                 msg = data.decode()
                 resp = b'.'
                 if len(msg) > 2 and msg[0:2]=='i_':
-                    #init request, send server info
+                    #init prefix, send server info
                     resp = json.dumps(serverState.public_vars, indent=2).encode('utf-8')
+                if len(msg) > 2 and msg[0:2]=='s_':
+                    #sync prefix, parse changes and send changes
+                    pass
 
                 conn.sendall(resp)
             except:

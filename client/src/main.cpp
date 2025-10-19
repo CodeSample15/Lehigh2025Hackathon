@@ -11,12 +11,10 @@
 int main(int argc, char* argv[])
 {
     std::string host = "192.168.0.19";
-    Client player(host);
+    Client player(host, 65312);
 
 
     while(1){
-        SocketHandler::Send("Hello ");
-        SocketHandler::Send("Hello ");
         player.Sync();
         player.DebugPrint();
     }
