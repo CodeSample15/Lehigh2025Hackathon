@@ -6,11 +6,12 @@
 #include <string>
 #include <vector>
 
-#ifdef _WIN64
-#include <winsock2.h>
-#else
-#include <sys/socket.h>
-#endif
+#include "SocketHandler.h"
+
+struct ClientAttributes
+{
+    
+};
 
 class Client
 {
@@ -28,6 +29,7 @@ public:
     bool Disconnect();
 
     void Poll();
+    void HeartBeat();
 
     /* Queries */
     template <typename T>

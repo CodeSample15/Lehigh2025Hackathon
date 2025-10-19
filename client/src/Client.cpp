@@ -17,9 +17,26 @@ bool Client::Connect(std::string IP)
 
     //  Retrieve PID from server
     //  Port 65312
+    
+    PID = SocketHandler::Startup(IP);
+    if(PID == -1)
+        return false;
 
-    clientSocket = socket(AF_INET, SOCK_STREAM, 0);
-
-    std::cout << "Connection to IP: " << IP << " \n";
     return true;
+}
+
+template <typename T>
+T GetVar(std::string varName)
+{
+
+}
+template <typename T>
+T SetVar(std::string varName)
+{
+
+}
+
+void Update()
+{
+    
 }
