@@ -6,7 +6,8 @@ import time
 
 from server import ServerState
 
-HOST = '127.0.0.1'
+#HOST = '127.0.0.1'
+HOST = '192.168.0.198'
 PORT = 65312
 
 serverState = ServerState()
