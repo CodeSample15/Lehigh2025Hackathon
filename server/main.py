@@ -59,7 +59,8 @@ def main():
         try:
             config = json.load(f)
             for value in config.keys():
-                pass
+                print(type(config[value]))
+                serverState.add_var(value, config[value])
             
         except Exception as e:
             print("Error parsing json:")
