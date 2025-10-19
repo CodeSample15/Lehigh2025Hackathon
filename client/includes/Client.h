@@ -5,34 +5,29 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 #include "SocketHandler.h"
 
-struct ClientAttributes
-{
-    
-};
+using ClientAttributes = std::unordered_map<std::string, std::string>;
+const char del = ',';
 
 class Client
 {
 private:
-    const static std::string ip;
-    int clientSocket;
-
     std::string UUID = ""; 
     std::vector<std::function<void()>> playerActions;
 
-    std::map<std::string, std::string> variables;
+    ClientAttributes attribs;
+
+    std::pair<std::string, std::string> ParsePacket(std::string dictionaryPair);
+
 public:
     Client(std::string IP);
 
     /* Server Sync */
     bool Connect(std::string IP);
     bool Disconnect();
-
-    void Poll();
-    void HeartBeat();
 
     /* Queries */
     template <typename T>
@@ -41,14 +36,14 @@ public:
     T SetVar(std::string varName);
 
     /* Other */
-    void RegisterClient();
     void Update();  //  Per frame actions
-
-    void init(); // pull all server config from interwebs
-    void sync(); // sync changes to/from server
+    void Sync();
 
     template<typename ret, typename... args>
     void AddAction(std::function<ret(args...)> script);
+    void AddDictElement(std::string key, std::string value);
+
+    void DebugPrint();
 };
 
 #endif

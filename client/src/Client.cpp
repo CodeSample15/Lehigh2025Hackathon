@@ -1,5 +1,17 @@
 #include "Client.h"
 
+std::pair<std::string, std::string> Client::ParsePacket(std::string dictionaryPair)
+{
+    auto pos = dictionaryPair.find(del);
+
+    std::string s1 = dictionaryPair.substr(0, pos);
+    std::string s2 = dictionaryPair.substr(pos, dictionaryPair.size());
+
+    return {s1, s2};
+};
+
+/* Public */
+
 Client::Client(std::string IP)
 {
     
@@ -13,13 +25,9 @@ Client::Client(std::string IP)
 
 bool Client::Connect(std::string IP)
 {
-    //  TODO: Different Implementations based on windows / linux 
-
-    //  Retrieve PID from server
-    //  Port 65312
-    
     SocketHandler::Startup(IP);
     UUID = SocketHandler::Read();
+
     std::cout << "UUID: " << UUID << " \n";
     return true;
 }
@@ -37,7 +45,33 @@ T Client::SetVar(std::string varName)
 
 void Client::Update()
 {
-    std::string readValue;
-    std::getline(std::cin, readValue);
+    std::string readValue = " ";
     SocketHandler::Send(readValue);
+}
+void Client::Sync()
+{
+    std::string receive = "";
+    while(1)
+    {
+        receive = SocketHandler::Read();
+
+        auto pair = ParsePacket(receive);
+        AddDictElement(pair.first, pair.second);
+    }
+
+    std::string send = "Temp var send";
+    SocketHandler::Send(send);
+}
+
+void Client::AddDictElement(std::string key, std::string value)
+{
+    attribs[key] = value;
+}
+
+void Client::DebugPrint()
+{
+    for(auto pair : attribs)
+    {
+        std::cout << pair.first <<  " " << pair.second << "\n";
+    }
 }

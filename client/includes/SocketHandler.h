@@ -9,6 +9,11 @@
 #include <string>
 #include "sockpp/tcp_connector.h"
 
+enum REQUEST_TYPE
+{
+    SYNC, GET_VAR, 
+};
+
 class SocketHandler
 {
     private:
@@ -21,6 +26,7 @@ class SocketHandler
 
         static std::string Read();
         static void Send(std::string varName);
+        static void Sync(std::string send, std::string& receive);
 };
 
 #endif
