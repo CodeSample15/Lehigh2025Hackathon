@@ -17,7 +17,10 @@ def connection_thread(conn, addr):
         print(f"[+] Connection started with {addr}!")
 
         #generate UUID and send to client
-        conn.sendall(bytes(str(uuid.uuid4()), 'utf-8'))
+        conn_uuid = str(uuid.uuid4())
+        print(f"\t- Assigning UUID: {conn_uuid}")
+
+        conn.sendall(bytes(conn_uuid, 'utf-8'))
 
         while running:
             try:
