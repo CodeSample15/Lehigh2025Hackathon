@@ -21,20 +21,40 @@ int SocketHandler::Startup(std::string _IP)
     }
 
     std::cout << "Created a connection from " << conn.address() << std::endl;
-    
+
+    std::string s, sret;
+    while (getline(std::cin, s) && !s.empty())
+    {
+        const size_t N = s.length();
+
+        /*
+        // TODO: Do we need to check length (res.value()) for write or read?
+        if (auto res = conn.write(s); res != N)
+        {
+            std::cerr << "Error writing to the TCP stream: " << res.error_message() << std::endl;
+            break;
+        }
+        */
+
+        sret.resize(N);
+        if (auto res = conn.read_n(&sret[0], N); res != N)
+        {
+            std::cerr << "Error reading from TCP stream: " << res.error_message() << std::endl;
+            break;
+        }
+
+        std::cout << sret << std::endl;
+    }
 
     return true;
 }
 
 void SocketHandler::Poll(std::string varName)
 {
-    char buf[37];
+    char buf[16];
     auto res = conn.read(buf, sizeof(buf));
 
     for(char c : buf)
         std::cout << c;
 
-    std::cout << "\n";
-
-    conn.write_n("Luke gay", 8)
 }
