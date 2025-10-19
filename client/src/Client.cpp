@@ -38,6 +38,6 @@ T Client::SetVar(std::string varName)
 void Client::Update()
 {
     std::string readValue;
-    std::cin >> readValue;
+    std::getline(std::cin, readValue);
     SocketHandler::Send(readValue);
 }

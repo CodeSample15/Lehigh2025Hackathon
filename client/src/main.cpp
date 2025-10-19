@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[])
 {
-    std::string host = "127.0.0.1";
+    std::string host = "192.168.0.198";
     Client player(host);
 
     std::string read;
