@@ -28,26 +28,19 @@ int SocketHandler::Startup(std::string _IP, in_port_t _port)
 std::string SocketHandler::Read()
 {
     std::vector<char> buf(1024);
-    auto res = conn.read_n(&buf[0], buf.size());
+    auto res = conn.read(&buf[0], buf.size());
 
     std::string ret(buf.begin(), buf.end());
+    size_t trunc = ret.find('\0');
+    ret = ret.substr(0, trunc);
+
     return ret;
 }
 
 void SocketHandler::Send(std::string varName)
 {
-    std::string s = "S_" + varName;
-    conn.write_n(s.c_str(), s.length());
+    conn.write_n(varName.c_str(), varName.length());
 
     std::cout << Read() << "\n";
     return;
-}
-
-void SocketHandler::Sync(std::string send, std::string& receive)
-{
-    while((receive = Read()) != "")
-    {
-
-    }
-    Send(send);
 }

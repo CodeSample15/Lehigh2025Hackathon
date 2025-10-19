@@ -7,6 +7,7 @@ import time
 from server import ServerState
 
 HOST = '127.0.0.1'
+HOST = '192.168.0.198'
 PORT = 65312
 
 serverState = ServerState()
@@ -31,10 +32,10 @@ def connection_thread(conn, addr):
 
                 msg = data.decode()
                 resp = b'.'
-                if len(msg) > 2 and msg[0:2]=='i_':
+                if len(msg) >= 2 and msg[0:2]=='i_':
                     #init prefix, send server info
                     resp = json.dumps(serverState.public_vars, indent=2).encode('utf-8')
-                if len(msg) > 2 and msg[0:2]=='s_':
+                if len(msg) >= 2 and msg[0:2]=='s_':
                     #sync prefix, parse changes and send changes
                     pass
 

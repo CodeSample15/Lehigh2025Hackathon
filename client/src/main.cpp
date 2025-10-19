@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 {
     std::string host = "127.0.0.1";
     Client player(host, 65312);
-
+    player.Init();
 
     while(1){
         player.Sync();
