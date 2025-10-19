@@ -27,9 +27,8 @@ int SocketHandler::Startup(std::string _IP)
 
 std::string SocketHandler::Read()
 {
-
     std::vector<char> buf(1024);
-    auto res = conn.read(&buf[0], buf.size());
+    auto res = conn.read_n(&buf[0], buf.size());
 
     std::string ret(buf.begin(), buf.end());
     return ret;
@@ -48,7 +47,7 @@ void SocketHandler::Sync(std::string send, std::string& receive)
 {
     while((receive = Read()) != "")
     {
-        
+
     }
     Send(send);
 }

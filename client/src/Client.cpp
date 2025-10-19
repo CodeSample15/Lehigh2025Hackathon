@@ -1,6 +1,6 @@
 #include "Client.h"
 
-std::pair<std::string, std::string> ParsePacket(std::string dictionaryPair)
+std::pair<std::string, std::string> Client::ParsePacket(std::string dictionaryPair)
 {
     auto pos = dictionaryPair.find(del);
 
@@ -28,9 +28,6 @@ bool Client::Connect(std::string IP)
     SocketHandler::Startup(IP);
     UUID = SocketHandler::Read();
 
-    std::string Dict = SocketHandler::Read();
-
-    
     std::cout << "UUID: " << UUID << " \n";
     return true;
 }
@@ -48,15 +45,16 @@ T Client::SetVar(std::string varName)
 
 void Client::Update()
 {
-    std::string readValue;
-    std::getline(std::cin, readValue);
+    std::string readValue = " ";
     SocketHandler::Send(readValue);
 }
 void Client::Sync()
 {
-    std::string receive;
-    while ((receive = SocketHandler::Read()) != "")
+    std::string receive = "";
+    while(1)
     {
+        receive = SocketHandler::Read();
+
         auto pair = ParsePacket(receive);
         AddDictElement(pair.first, pair.second);
     }
