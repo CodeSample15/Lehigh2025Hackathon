@@ -27,7 +27,7 @@ bool Client::Connect(std::string IP)
 template <typename T>
 T Client::GetVar(std::string varName)
 {
-
+    
 }
 template <typename T>
 T Client::SetVar(std::string varName)
