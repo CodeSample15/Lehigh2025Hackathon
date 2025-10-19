@@ -13,13 +13,12 @@ Client::Client(std::string IP)
 
 bool Client::Connect(std::string IP)
 {
-    //  TODO: Different Implementations based on windows / linux 
-
-    //  Retrieve PID from server
-    //  Port 65312
-    
     SocketHandler::Startup(IP);
     UUID = SocketHandler::Read();
+
+    std::string Dict = SocketHandler::Read();
+
+    
     std::cout << "UUID: " << UUID << " \n";
     return true;
 }
@@ -40,4 +39,9 @@ void Client::Update()
     std::string readValue;
     std::getline(std::cin, readValue);
     SocketHandler::Send(readValue);
+}
+
+void Client::AddDictElement(std::string key, std::string value)
+{
+    attribs[key] = value;
 }
