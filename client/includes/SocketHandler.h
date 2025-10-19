@@ -26,7 +26,6 @@ class SocketHandler
 
         static std::string Read();
         static void Send(std::string varName);
-
         static void Sync(std::string send, std::string& receive);
 };
 

@@ -6,14 +6,7 @@
 
 
 //  Just gonna assume theres only one comma for now
-const char del = ',';
-void ParsePacket(std::string dictionaryPair)
-{
-    auto pos = dictionaryPair.find(del);
 
-    std::string s1 = dictionaryPair.substr(0, pos);
-    std::string s2 = dictionaryPair.substr(pos, dictionaryPair.size());
-};
 
 int main(int argc, char* argv[])
 {

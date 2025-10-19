@@ -10,6 +10,7 @@
 #include "SocketHandler.h"
 
 using ClientAttributes = std::unordered_map<std::string, std::string>;
+const char del = ',';
 
 class Client
 {
@@ -18,6 +19,9 @@ private:
     std::vector<std::function<void()>> playerActions;
 
     ClientAttributes attribs;
+
+    std::pair<std::string, std::string> ParsePacket(std::string dictionaryPair);
+
 public:
     Client(std::string IP);
 
@@ -33,10 +37,13 @@ public:
 
     /* Other */
     void Update();  //  Per frame actions
+    void Sync();
 
     template<typename ret, typename... args>
     void AddAction(std::function<ret(args...)> script);
     void AddDictElement(std::string key, std::string value);
+
+    void DebugPrint();
 };
 
 #endif
