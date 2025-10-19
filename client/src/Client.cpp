@@ -26,17 +26,17 @@ bool Client::Connect(std::string IP)
 }
 
 template <typename T>
-T GetVar(std::string varName)
+T Client::GetVar(std::string varName)
 {
 
 }
 template <typename T>
-T SetVar(std::string varName)
+T Client::SetVar(std::string varName)
 {
 
 }
 
-void Update()
+void Client::Update()
 {
-    
+    SocketHandler::Poll("test");
 }

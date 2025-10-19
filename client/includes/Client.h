@@ -19,7 +19,7 @@ private:
     const static std::string ip;
     int clientSocket;
 
-    unsigned long PID = -1; 
+    std::string UUID = ""; 
     std::vector<std::function<void()>> playerActions;
 public:
     Client(std::string IP);
