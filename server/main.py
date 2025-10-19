@@ -58,8 +58,9 @@ def main():
     with open('config.json') as f:
         try:
             config = json.load(f)
-            for value in config.keys():
-                print(type(config[value]))
+
+            for value in config['public'].keys():
+                print(type(config['public'][value]))
                 serverState.add_var(value, config[value])
             
         except Exception as e:
