@@ -13,14 +13,9 @@ int main(int argc, char* argv[])
     std::string host = "127.0.0.1";
     Client player(host);
 
-
-    while(1){
-        SocketHandler::Send("Hello ");
-        SocketHandler::Send("Hello ");
-        player.Sync();
-        player.DebugPrint();
-    }
-    
+    SocketHandler::Send("Hello,World");
+    player.Sync();
+    player.DictPrintDebug();
 
     /*
     while(1)

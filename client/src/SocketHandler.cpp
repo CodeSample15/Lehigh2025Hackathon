@@ -28,7 +28,7 @@ int SocketHandler::Startup(std::string _IP)
 std::string SocketHandler::Read()
 {
     std::vector<char> buf(1024);
-    auto res = conn.read_n(&buf[0], buf.size());
+    auto res = conn.read(&buf[0], buf.size());
 
     std::string ret(buf.begin(), buf.end());
     return ret;
@@ -39,7 +39,6 @@ void SocketHandler::Send(std::string varName)
     std::string s = "S_" + varName;
     conn.write_n(s.c_str(), s.length());
 
-    std::cout << Read() << "\n";
     return;
 }
 

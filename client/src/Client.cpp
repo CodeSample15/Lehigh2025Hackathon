@@ -51,16 +51,13 @@ void Client::Update()
 void Client::Sync()
 {
     std::string receive = "";
-    while(1)
-    {
-        receive = SocketHandler::Read();
+    receive = SocketHandler::Read();        //  Either read EVERY update, or loop until no more sent  //
 
-        auto pair = ParsePacket(receive);
-        AddDictElement(pair.first, pair.second);
-    }
+    auto pair = ParsePacket(receive);
+    AddDictElement(pair.first, pair.second);    
 
-    std::string send = "Temp var send";
-    SocketHandler::Send(send);
+    //std::string send = "Data to Send";
+    //SocketHandler::Send(send);
 }
 
 void Client::AddDictElement(std::string key, std::string value)
@@ -68,10 +65,10 @@ void Client::AddDictElement(std::string key, std::string value)
     attribs[key] = value;
 }
 
-void Client::DebugPrint()
+void Client::DictPrintDebug()
 {
     for(auto pair : attribs)
     {
-        std::cout << pair.first <<  " " << pair.second << "\n";
+        std::cout << pair.first <<  " :: " << pair.second << "\n";
     }
 }

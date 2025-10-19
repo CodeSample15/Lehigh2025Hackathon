@@ -37,13 +37,13 @@ public:
 
     /* Other */
     void Update();  //  Per frame actions
-    void Sync();
+    void Sync();    //  Syncs updates with server (send and retrieve)
 
     template<typename ret, typename... args>
     void AddAction(std::function<ret(args...)> script);
     void AddDictElement(std::string key, std::string value);
 
-    void DebugPrint();
+    void DictPrintDebug();
 };
 
 #endif
