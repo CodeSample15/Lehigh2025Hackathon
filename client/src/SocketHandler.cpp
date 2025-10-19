@@ -4,10 +4,10 @@ std::string SocketHandler::IP;
 in_port_t SocketHandler::port;
 sockpp::tcp_connector SocketHandler::conn;
 
-int SocketHandler::Startup(std::string _IP)
+int SocketHandler::Startup(std::string _IP, in_port_t _port)
 {
     IP = _IP;
-    port = 65312;
+    port = _port;
 
     sockpp::initialize();
 

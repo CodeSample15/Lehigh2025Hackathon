@@ -22,12 +22,16 @@ private:
 
     std::pair<std::string, std::string> ParsePacket(std::string dictionaryPair);
 
+    bool connected;
+
 public:
-    Client(std::string IP);
+    Client(std::string IP, in_port_t port);
 
     /* Server Sync */
-    bool Connect(std::string IP);
+    bool Connect(std::string IP, in_port_t port);
     bool Disconnect();
+
+    bool Connected();
 
     /* Queries */
     template <typename T>
@@ -36,8 +40,8 @@ public:
     T SetVar(std::string varName);
 
     /* Other */
-    void Update();  //  Per frame actions
-    void Sync();    //  Syncs updates with server (send and retrieve)
+    void Init();
+    void Sync();
 
     template<typename ret, typename... args>
     void AddAction(std::function<ret(args...)> script);

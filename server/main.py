@@ -9,6 +9,7 @@ from server import ServerState
 HOST = '127.0.0.1'
 PORT = 65312
 
+serverState = ServerState()
 running = False
 threads = []
 
@@ -27,12 +28,23 @@ def connection_thread(conn, addr):
                 data = conn.recv(1024)
                 if not data:
                     break
-                
-                conn.sendall(data)
+
+                msg = data.decode()
+                resp = b'.'
+                if len(msg) > 2 and msg[0:2]=='i_':
+                    #init prefix, send server info
+                    resp = json.dumps(serverState.public_vars, indent=2).encode('utf-8')
+                if len(msg) > 2 and msg[0:2]=='s_':
+                    #sync prefix, parse changes and send changes
+                    pass
+
+                conn.sendall(resp)
             except:
                 print(f"[!] Error with connection to {addr}. Closing connection.")
                 conn.close()
                 break
+
+        serverState.disconnect(conn_uuid)
 
 def listen_thread():
     global threads
@@ -52,7 +64,7 @@ def listen_thread():
 def main():
     global running
 
-    serverState = ServerState()
+    serverState.reset()
 
     #config parsing
     with open('config.json') as f:
@@ -60,9 +72,12 @@ def main():
             config = json.load(f)
 
             for value in config['public'].keys():
-                #print(type(config['public'][value]))
-                #serverState.add_var(value, config[value])
-                pass
+                if isinstance(config['public'][value], str):
+                    serverState.add_var(value, config['public'][value])
+                elif isinstance(config['public'][value], dict):
+                    serverState.add_obj(value, config['public'][value])
+                else:
+                    raise Exception(f"Unrecognized input json format: {value}")
             
         except Exception as e:
             print("Error parsing json:")

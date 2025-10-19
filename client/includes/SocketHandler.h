@@ -22,7 +22,7 @@ class SocketHandler
 
         static sockpp::tcp_connector conn;
     public:
-        static int Startup(std::string _IP);
+        static int Startup(std::string _IP, in_port_t _port);
 
         static std::string Read();
         static void Send(std::string varName);
