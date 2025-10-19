@@ -4,6 +4,8 @@ import json
 import threading
 import time
 
+from server import ServerState
+
 HOST = '127.0.0.1'
 PORT = 65312
 
@@ -15,12 +17,13 @@ def connection_thread(conn, addr):
         print(f"[+] Connection started with {addr}!")
 
         #generate UUID and send to client
-        conn.send(bytes(str(uuid.uuid4()), 'utf-8'))
+        conn.sendall(bytes(str(uuid.uuid4()), 'utf-8'))
 
         while running:
             data = conn.recv(1024)
             if not data:
                 break
+
             conn.sendall(data)  
 
 def listen_thread():
@@ -41,10 +44,14 @@ def listen_thread():
 def main():
     global running
 
+    serverState = ServerState()
+
     #config parsing
     with open('config.json') as f:
         try:
             config = json.load(f)
+            for value in config.keys():
+                pass
             
         except Exception as e:
             print("Error parsing json:")
