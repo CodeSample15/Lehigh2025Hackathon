@@ -48,7 +48,7 @@ void Client::Init()
     SocketHandler::Send("i_");
     std::string serverConfig = SocketHandler::Read();
 
-    //std::cout << serverConfig << std::endl;
+    std::cout << serverConfig << std::endl;
     auto pair = ParsePacket(serverConfig);
 }
 
